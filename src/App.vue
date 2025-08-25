@@ -1,28 +1,35 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <AppHeader v-bind:header="computedStr" v-on:renew="renewCount"></AppHeader>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import AppHeader from './components/AppHeader.vue';
 
 export default {
-  name: 'App',
+  data : function () {
+     return {
+        str : "Header!!~",
+        surfix: ""
+     }
+  },
+  computed: {
+    computedStr: function () {
+       return this.str + this.surfix
+    }
+  },
+  methods: {
+    renewCount: function(v) {
+      this.surfix = v
+    }
+  },
   components: {
-    HelloWorld
+    AppHeader
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
